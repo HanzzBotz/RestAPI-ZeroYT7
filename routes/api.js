@@ -636,22 +636,455 @@ router.get('/nulis2', async (req, res, next) => {
            }
 })
 
-router.get('/textmaker', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'glitch' && theme != 'google-suggestion') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'glitch') {
-        	if (!text2) return res.json(loghandler.nottext2)
-            try {
+router.get('/photooxy/naruto', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/manga-and-anime/make-naruto-banner-online-free-378.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_2=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/grafity_text', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/banner-cover/graffiti-text-cover-222.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/petterns', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/bevel-text-between-royal-patterns-166.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/text_on_cup', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/write-text-on-the-cup-392.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/3d_summer', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/3d-summer-text-effect-367.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/3d_nature', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/make-nature-3d-text-effects-364.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/wolf_metal', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/create-a-wolf-metal-text-effect-365.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/wood_heart', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/write-art-quote-on-wood-heart-370.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/flower_heart', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/text-inside-the-flower-heart-369.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/wooden_board', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/writing-on-wooden-boards-368.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/tiktok_effect', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       var text2 = req.query.text2
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+       if (!text2) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text2"})      
+         if(listkey.includes(apikey)){
+       try {
             request.post({
                 url: "https://photooxy.com/logo-and-text-effects/make-tik-tok-text-effect-375.html",
                 headers: {
@@ -664,167 +1097,40 @@ router.get('/textmaker', async (req, res, next) => {
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
                             var result = "https://photooxy.com/"+h
-			    fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    res.json({
-                                              status : true,
-                                              creator : creator,
-                                              result : data.data.url
-                                       })
-                                })
-                           })
-                       }
-                   })
-     } catch (e) {
-          console.log(e);
-        res.sendFile(error)
-            }
-        } else if (theme == 'google-suggestion') {
-        	if (!text2) return res.json(loghandler.nottext2)
-        if (!text3) return res.json(loghandler.nottext3)
-            request.post({
-                url: "https://photooxy.com/other-design/make-google-suggestion-photos-238.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&text_2=${text2}&text_3=${text3}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
                                     var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
+                                        delete_url = data.data.delete_url;
                                         res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
                                             result:{
                                                 url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.sendFile(error)
-        }
-})
-
-router.get('/textmaker/game', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'pubg' && theme != 'battlefield') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'pubg') {
-        	if (!text2) return rs.jso(loghandler.nottext2)
-            try {
-            request.post({
-                url: "https://photooxy.com/battlegrounds/make-wallpaper-battlegrounds-logo-text-146.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&text_2=${text2}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h =$(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
                                         })
                                 })
                         })
                     }
                 })
-                } catch (e) {
-                	console.log(e);
-                res.sendFile(error)
-                }
-        } else if (theme == 'battlefield') {
-        	if (!text2) return res.json(loghandler.nottext2)
-            request.post({
-                url: "https://photooxy.com/fps-game-effect/create-battlefield-4-rising-effect-152.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&text_2=${text2}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.sendFile(error)
-        }
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
 })
-
-router.get('/textmaker/senja', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'coffee-cup' && theme != 'coffee-cup2') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'coffee-cup') {
-            try {
+router.get('/photooxy/double_heart', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
             request.post({
-                url: "https://photooxy.com/logo-and-text-effcts/put-any-text-in-to-coffee-cup-371.html",
+                url: "https://photooxy.com/logo-and-text-effects/love-text-effect-372.html",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -839,28 +1145,36 @@ router.get('/textmaker/senja', async (req, res, next) => {
                                 .then(response => response.json())
                                 .then(data => {
                                     var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
+                                        delete_url = data.data.delete_url;
                                         res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
                                             result:{
                                                 url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
                                         })
                                 })
                         })
                     }
                 })
-                } catch (e) {
-                	console.log(e);
-                res.sendFile(error)
-                }
-        } else if (theme == 'coffee-cup2') {
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/coffee_cup', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
             request.post({
-                url: "https://photooxy.com/logo-and-text-effects/put-your-text-on-a-coffee-cup--174.html",
+                url: "https://photooxy.com/logo-and-text-effects/put-any-text-in-to-coffee-cup-371.html",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -875,185 +1189,36 @@ router.get('/textmaker/senja', async (req, res, next) => {
                                 .then(response => response.json())
                                 .then(data => {
                                     var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
+                                        delete_url = data.data.delete_url;
                                         res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
                                             result:{
                                                 url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                               })
-                       })
-                    }
-                }) 
-        } else {
-            res.sendFile(error)
-        }
-})
-
-router.get('/kisahnabi', async (req, res, next) => {
-	var nabi = req.query.nabi,
-		apikeyInput = req.query.apikey;
-
-		if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-		Searchnabi(nabi)
-		.then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-		.catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get('/infogempa', async (req, res, next) => {
-	        var apikeyInput = req.query.apikey
-
-		if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-		Gempa()
-		.then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-		.catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get('/hadits', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            kitab = req.query.kitab,
-            nomor = req.query.nomor
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-    if (!kitab) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter kitab"})
-    if (!nomor) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter nomor"})
-
-       fetch(encodeURI(`https://hadits-api-zhirrr.vercel.app/books/${kitab}/${nomor}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.sendFile(error)
-     })
-})
- 
-router.get('/quran', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            surah = req.query.surah,
-            ayat = req.query.ayat
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-    if (!surah) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter surah"})
-    if (!ayat) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter ayat"})
-
-       fetch(encodeURI(`https://alquran-apiii.vercel.app/surah/${surah}/${ayat}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.sendFile(error)
-})
-})
-
-
-router.get('/fbdown', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            url = req.query.url
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-    if (!url) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter url"})
-
-       fetch(encodeURI(`https://fb-api-zhirrr.vercel.app/?url=${url}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.sendFile(error)
-})
-})
-
-
-router.get('/textmaker/metallic', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'neon' && theme != 'glow') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'neon') {
-            try {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/illuminated-metallic-effect-177.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.om/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
                                         })
                                 })
                         })
                     }
                 })
-                } catch (e) {
-                	console.log(e);
-                res.sendFile(error)
-                }
-        } else if (theme == 'glow') {
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/under_grass', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
             request.post({
-                url: "https://photooxy.com/other-design/create-metallic-text-glow-online-188.html",
+                url: "https://photooxy.com/logo-and-text-effects/make-quotes-under-grass-376.html",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -1068,79 +1233,36 @@ router.get('/textmaker/metallic', async (req, res, next) => {
                                 .then(response => response.json())
                                 .then(data => {
                                     var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
+                                        delete_url = data.data.delete_url;
                                         res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
                                             result:{
                                                 url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.sendFile(error)
-        }
-})
-
-router.get('/textmaker/alam', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'summer' && theme != 'flower') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'summer') {
-            try {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/3d-summer-text-effect-367.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnai").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
                                         })
                                 })
                         })
                     }
                 })
-                } catch (e) {
-                	console.log(e);
-                res.sendFile(error)
-                }
-        } else if (theme == 'flower') {
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/text_on_cup2', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
             request.post({
-                url: "https://photooxy.com/art-effects/flower-typography-text-effect-164.html",
+                url: "https://photooxy.com/logo-and-text-effects/put-text-on-the-cup-387.html",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -1155,64 +1277,158 @@ router.get('/textmaker/alam', async (req, res, next) => {
                                 .then(response => response.json())
                                 .then(data => {
                                     var urlnya = data.data.url,
-                                        devare_url = data.data.devare_url;
+                                        delete_url = data.data.delete_url;
                                         res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa Subscribe Youtube ${creator}`,
                                             result:{
                                                 url:urlnya,
-                                                devare_url: devare_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
                                         })
                                 })
                         })
                     }
-                }) 
-        } else {
-            res.sendFile(error)
-        }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
 })
-
-router.get('/flaming', async (req, res, next) => {
-         var text = req.query.text,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!text) return res.json(loghandler.nottext)
-
-  try {
-         var json = await (await fetch(`http://zekais-api.herokuapp.com/photooxy/flaming?text=${text}`)).json()
-	 var buffer = await (await fetch(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${json.result}&name=HanzzGanz`)).json()
-	   await fs.writeFileSync(__path + '/tmp/flaming.png', await getBuffer(buffer.data.url))
-	  
-	res.sendFile(__path + '/tmp/flaming.png')
-   } catch (e) {
-       console.log(e);
-     res.sendFile(error)
-       }
+router.get('/photooxy/romantic_text', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/romantic-messages-for-your-loved-one-391.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
 })
-
-router.get('/neon', async (req, res, next) => {
-         var text = req.query.text,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-        if (!text) return res.json(loghandler.nottext)
-
-  try {
-         var json = await (await fetch(`http://zekais-api.herokuapp.com/photooxy/neon?text=${text}`)).json()
-	 var buffer = await (await fetch(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${json.result}&name=HanzzGanz`)).json()
-	   await fs.writeFileSync(__path + '/tmp/neon.png', await getBuffer(buffer.data.url))
-	  
-	res.sendFile(__path + '/tmp/neon.png')
-   } catch (e) {
-       console.log(e);
-     res.sendFile(error)
-       }
+router.get('/photooxy/burn_paper', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/write-text-on-burn-paper-388.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/photooxy/shadow_text', async (req, res, next) => {
+          var apikey = req.query.apikey
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})      
+         if(listkey.includes(apikey)){
+       try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/shadow-text-effect-in-the-sky-394.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            result:{
+                                                url:urlnya,
+                                            },
+                                        	message: `Ok`,
+											status: `Success`,
+											maintanied_by: `${creator}`
+                                        })
+                                })
+                        })
+                    }
+                })
+         } catch (e) {
+         	console.log(e);
+         	res.json(loghandler.error)
+}
+} else {
+  res.json(loghandler.apikey)
+}
 })
 
 router.get('/muslim/tahlil', async (req, res, next) => {
